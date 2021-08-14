@@ -1,0 +1,86 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.33.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 0f7b1d400c9bf7e823657e5eb7016991d14ebe816e2cad70f215d80fbefb5d6a
+
+name:           aoc2015
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/githubuser/aoc2015#readme>
+homepage:       https://github.com/githubuser/aoc2015#readme
+bug-reports:    https://github.com/githubuser/aoc2015/issues
+author:         Author name here
+maintainer:     example@example.com
+copyright:      2021 Author name here
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    ChangeLog.md
+
+source-repository head
+  type: git
+  location: https://github.com/githubuser/aoc2015
+
+library
+  exposed-modules:
+      Lib
+      One
+      Three
+      Two
+  other-modules:
+      Paths_aoc2015
+  hs-source-dirs:
+      src
+  build-depends:
+      HUnit
+    , QuickCheck
+    , base >=4.7 && <5
+    , containers
+    , hspec
+    , hspec-contrib
+    , split
+    , tasty >=1.2.3
+  default-language: Haskell2010
+
+executable aoc2015-exe
+  main-is: Main.hs
+  other-modules:
+      Paths_aoc2015
+  hs-source-dirs:
+      app
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      HUnit
+    , QuickCheck
+    , aoc2015
+    , base >=4.7 && <5
+    , containers
+    , hspec
+    , hspec-contrib
+    , split
+    , tasty >=1.2.3
+  default-language: Haskell2010
+
+test-suite aoc2015-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_aoc2015
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      HUnit
+    , QuickCheck
+    , aoc2015
+    , base >=4.7 && <5
+    , containers
+    , hspec
+    , hspec-contrib
+    , split
+    , tasty >=1.2.3
+  default-language: Haskell2010
