@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 0f7b1d400c9bf7e823657e5eb7016991d14ebe816e2cad70f215d80fbefb5d6a
+-- hash: 731989a5685f681eff5ff6400936a646a96119150d89fd406f1dda75525a3759
 
 name:           aoc2015
 version:        0.1.0.0
@@ -27,6 +27,8 @@ source-repository head
 
 library
   exposed-modules:
+      Five
+      Four
       Lib
       One
       Three
@@ -37,6 +39,7 @@ library
       src
   build-depends:
       HUnit
+    , MissingH
     , QuickCheck
     , base >=4.7 && <5
     , containers
@@ -55,6 +58,7 @@ executable aoc2015-exe
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       HUnit
+    , MissingH
     , QuickCheck
     , aoc2015
     , base >=4.7 && <5
@@ -75,6 +79,7 @@ test-suite aoc2015-test
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       HUnit
+    , MissingH
     , QuickCheck
     , aoc2015
     , base >=4.7 && <5

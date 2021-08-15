@@ -28,6 +28,7 @@ dependencies:
 - HUnit
 - split
 - containers
+- MissingH
 
 library:
   source-dirs: src

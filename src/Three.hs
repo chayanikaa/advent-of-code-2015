@@ -1,5 +1,6 @@
 module Three
-    (part1
+    (part1,
+     part2,
     ) where
 
 import Data.Set
@@ -14,12 +15,15 @@ import Data.List
 -- What if I just pushed a new string based on coordinates every time and just uniquify the list afterwards and returned the length for part 1?
 
 part1 :: String -> Int
+part2 :: String -> Int
 getNextCoordinate :: Char -> (Int, Int) -> (Int, Int)
+splitDirections :: String -> (String, String)
 
-part1 path =
+part1 path = size $ fromList $ getAllCoords path
+
+getAllCoords path =
   let coords = Data.List.foldl (\acc c -> getNextCoordinate c (head acc) : acc) [(0,0)] path
-      strs = Data.List.map (\(x,y) -> show x ++ "," ++ show y) coords
-  in size (fromList strs)
+  in Data.List.map (\(x,y) -> show x ++ "," ++ show y) coords
 
 getNextCoordinate c (x,y)
   | c == '^' = (x, y+1)
@@ -27,3 +31,18 @@ getNextCoordinate c (x,y)
   | c == '<' = (x-1, y)
   | c == 'v' = (x, y-1)
   | otherwise = (x,y)
+
+-- Part 2, Easiest to split the list in 2 and just execute the algo twice then uniquify?
+-- Let's try that.
+
+-- Split even and odd indexed directions
+splitDirections dirs =
+  let directionsWithIndex = Data.List.zip [0..] dirs -- infinite list, so cool
+      (s, u) = Data.List.partition (even . fst) directionsWithIndex
+      (_, s2) = Data.List.unzip s
+      (_, u2) = Data.List.unzip u
+  in (s2, u2)
+
+part2 path =
+  let (path1, path2) = splitDirections path
+  in size $ fromList $ (getAllCoords path1 ++ getAllCoords path2)

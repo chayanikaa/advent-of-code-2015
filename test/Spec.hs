@@ -3,6 +3,8 @@ import Test.Hspec
 import qualified One
 import qualified Two
 import qualified Three
+import qualified Four
+import qualified Five
 
 main :: IO ()
 main = hspec $ do
@@ -39,3 +41,28 @@ main = hspec $ do
     it "part 1 input" $ do
       input <- readFile "./inputs/3.txt"
       Three.part1 input `shouldBe` 2592
+    it "part 2 example 1" $ do
+      Three.part2 "^v" `shouldBe` 3
+    it "part 2 example 2" $ do
+      Three.part2 "^v^v^v^v^v" `shouldBe` 11
+    it "part 2 input" $ do
+      input <- readFile "./inputs/3.txt"
+      Three.part2 input `shouldBe` 2360
+
+  describe "Day 4" $ do
+    xit "part 1 example 1" $ do
+      Four.part1 "abcdef" "00000" `shouldBe` 609043 -- about 4 seconds
+    xit "part 1 input" $ do
+      Four.part1 "iwrupvqb" "00000" `shouldBe` 346386 -- about 4 seconds
+    xit "part 2 input" $ do
+      Four.part1 "iwrupvqb" "000000" `shouldBe` 9958218 -- about 82 seconds
+
+  describe "Day 5" $ do
+    it "part 1 example 1" $ do
+      Five.part1 ["haegwjzuvuyypxyu"] `shouldBe` 0
+    it "part 1 example 2" $ do
+      Five.part1 ["ugknbfddgicrmopn"] `shouldBe` 1
+    it "part 1 input" $ do
+      input <- readFile "./inputs/5.txt"
+      Five.part1 (lines input) `shouldBe` 258
+    
