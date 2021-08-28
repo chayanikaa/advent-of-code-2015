@@ -13,6 +13,6 @@ part1 strs =
   in length $ filter (isGoodString badStrings goodStrings) strs
 
 isGoodString badStrings goodStrings str =
-  (not $ any (\bad -> isInfixOf bad str) badStrings) &&
-    (any (\good -> isInfixOf good str) goodStrings) &&
-      (length $ filter (\c -> any (==c) "aeiou") str) >= 3
+  not (any (`isInfixOf` str) badStrings) &&
+    any (`isInfixOf` str) goodStrings &&
+      length (filter (`elem` "aeiou") str) >= 3
