@@ -110,4 +110,9 @@ main = hspec $ do
       Six.part1 ["turn on 0,0 through 999,999"] `shouldBe` 1000000
     it "part 1 example 2" $ do
       Six.part1 ["turn on 499,499 through 500,500"] `shouldBe` 4
+    it "part 1 example 3" $ do
+      Six.part1 ["toggle 0,0 through 999,0"] `shouldBe` 1000
+    xit "part 1 input" $ do
+      input <- readFile "./inputs/6.txt"
+      Six.part1 (lines input) `shouldBe` 2360
     

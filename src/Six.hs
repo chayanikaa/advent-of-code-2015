@@ -8,9 +8,9 @@ module Six
 data Coord = Coord Int Int deriving (Show)
 
 part1 :: [String] -> Int
-decodeInstruction :: String -> (Bool, Coord, Coord)
+decodeInstruction :: String -> (Int, Coord, Coord)
 -- decodeInstruction :: String -> [String]
-executeInstruction :: [(Int, Bool)] -> (Bool, Coord, Coord) -> [(Int, Bool)]
+executeInstruction1 :: [(Int, Bool)] -> (Int, Coord, Coord) -> [(Int, Bool)]
 
 getRow :: Coord -> Int
 getRow (Coord row _) = row
@@ -39,25 +39,40 @@ toInt s = read s :: Int
 decodeInstruction str =
   let strOnlySpaces = map replaceSpaces str
       parts = words strOnlySpaces
-  in (
-      parts!!1 == "on",
-      Coord (read (parts!!2)) (read (parts!!3)),
-      Coord (read (parts!!5)) (read (parts!!6))
-    )
+  in if (parts!!0 == "toggle") then
+        (
+          3,
+          Coord (read (parts!!1)) (read (parts!!2)),
+          Coord (read (parts!!4)) (read (parts!!5))
+        )
+     else 
+        (
+          if (parts!!1 == "on") then 1 else 2,
+          Coord (read (parts!!2)) (read (parts!!3)),
+          Coord (read (parts!!5)) (read (parts!!6))
+        )
 
-thd (_,_,x) = x
-
-maybeTurn :: Bool -> Coord -> Coord -> (Int, Bool) -> (Int, Bool)
-maybeTurn newValue start end (index, oldValue)
-  | (includesCoord start end (calculateCoord index)) = (index, newValue)
+maybeTurn1 :: Int -> Coord -> Coord -> (Int, Bool) -> (Int, Bool)
+maybeTurn1 instruction start end (index, oldValue)
+  | (includesCoord start end (calculateCoord index)) =
+    if (instruction == 1) then (index, True)
+    else if (instruction == 2) then (index, False)
+    else (index, not oldValue)
   | otherwise = (index, oldValue)
 
-executeInstruction initLights (toggle, start, end) =
-  map (maybeTurn toggle start end) initLights
+executeInstruction1 initLights (toggle, start, end) =
+  map (maybeTurn1 toggle start end) initLights
 
 part1 strs =
   let instructions = map decodeInstruction strs
       initLights = zip [0..999999] (repeat False)
-      lights = foldl executeInstruction initLights instructions
+      lights = foldl executeInstruction1 initLights instructions
   -- in lights
   in length $ filter (\(_,value) -> value==True) lights
+
+-- part2 strs =
+--   let instructions = map decodeInstruction strs
+--       initLights = zip [0..999999] (repeat False)
+--       lights = foldl executeInstruction2 initLights instructions
+--   -- in lights
+--   in length $ foldl 0 (\acc (_,value) -> value==True) lights
