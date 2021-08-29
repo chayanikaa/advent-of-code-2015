@@ -1,7 +1,8 @@
 module Six
     (
     decodeInstruction,
-    part1
+    part1,
+    part2,
     ) where
 
 -- first ever time using an algebraic data type, yay!
@@ -70,9 +71,23 @@ part1 strs =
   -- in lights
   in length $ filter (\(_,value) -> value==True) lights
 
--- part2 strs =
---   let instructions = map decodeInstruction strs
---       initLights = zip [0..999999] (repeat False)
---       lights = foldl executeInstruction2 initLights instructions
---   -- in lights
---   in length $ foldl 0 (\acc (_,value) -> value==True) lights
+turn2 :: Int -> Coord -> Coord -> (Int, Int) -> (Int, Int)
+turn2 instruction start end (index, oldValue)
+  | (includesCoord start end (calculateCoord index)) =
+    if (instruction == 1) then (index, oldValue + 1)
+    else if (instruction == 2 && oldValue > 0) then (index, oldValue - 1)
+    else if (instruction == 2 && oldValue == 0) then (index, oldValue)
+    else (index, oldValue + 2)
+  | otherwise = (index, oldValue)
+
+executeInstruction2 :: [(Int, Int)] -> (Int, Coord, Coord) -> [(Int, Int)]
+executeInstruction2 initLights (toggle, start, end) =
+  map (turn2 toggle start end) initLights
+
+part2 :: [String] -> Int
+part2 strs =
+  let instructions = map decodeInstruction strs
+      initLights = zip [0..999999] (repeat 0)
+      lights = foldl executeInstruction2 initLights instructions
+  -- in lights
+  in foldl (\acc (_,value) -> acc + value) 0 lights
