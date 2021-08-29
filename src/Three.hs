@@ -45,4 +45,4 @@ splitDirections dirs =
 
 part2 path =
   let (path1, path2) = splitDirections path
-  in size $ fromList $ (getAllCoords path1 ++ getAllCoords path2)
+  in size $ fromList (getAllCoords path1 ++ getAllCoords path2)

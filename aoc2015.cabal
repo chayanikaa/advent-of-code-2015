@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 731989a5685f681eff5ff6400936a646a96119150d89fd406f1dda75525a3759
+-- hash: 45b8ff3a2a9bda20ab55d11d357a5c3ee7b3573e042a03fd90914b25b1594998
 
 name:           aoc2015
 version:        0.1.0.0
@@ -31,6 +31,7 @@ library
       Four
       Lib
       One
+      Six
       Three
       Two
   other-modules:

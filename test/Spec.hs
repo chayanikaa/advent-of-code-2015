@@ -1,10 +1,13 @@
 import Test.Hspec
 
+import qualified Data.List
+
 import qualified One
 import qualified Two
 import qualified Three
 import qualified Four
 import qualified Five
+import qualified Six
 
 main :: IO ()
 main = hspec $ do
@@ -65,4 +68,46 @@ main = hspec $ do
     it "part 1 input" $ do
       input <- readFile "./inputs/5.txt"
       Five.part1 (lines input) `shouldBe` 258
+    it "part 2 containsPairCopied example 1" $ do
+      Five.containsPairCopied "" "aaa" `shouldBe` False
+    it "part 2 containsPairCopied example 1.5" $ do
+      Five.containsPairCopied "" "aaaa" `shouldBe` True
+    it "part 2 containsPairCopied example xyxy" $ do
+      Five.containsPairCopied "" "xyxy" `shouldBe` True
+    it "part 2 containsPairCopied example 2" $ do
+      Five.containsPairCopied "" "xxyxx" `shouldBe` True
+    it "part 2 containsPairCopied example 2.5" $ do
+      Five.containsPairCopied "" "aabcdefgaa" `shouldBe` True
+    it "part 2 containsPairCopied example 3" $ do
+      Five.containsPairCopied "" "ieodomkazucvgmuy" `shouldBe` False
+    it "part 2 containsPairCopied example 4" $ do
+      Five.containsPairCopied "" "aabcdefgaa" `shouldBe` True
+    it "part 2 example 1" $ do
+      Five.part2 ["qjhvhtzxzqqjkmpb"] `shouldBe` 1
+    it "part 2 example 2" $ do
+      Five.part2 ["xxyxx"] `shouldBe` 1
+    it "part 2 example 3" $ do
+      Five.part2 ["uurcxstgmygtbstg"] `shouldBe` 0
+    it "part 2 example 4" $ do
+      Five.part2 ["ieodomkazucvgmuy"] `shouldBe` 0
+    it "part 2 containsLetterRepeat" $ do
+      Five.containsLetterRepeat "aaa" `shouldBe` True
+    it "part 2 containsLetterRepeat" $ do
+      Five.containsLetterRepeat "uurcxstgmygtbstg" `shouldBe` False
+    it "part 2 containsLetterRepeat example xyxy" $ do
+      Five.containsLetterRepeat "xyxy" `shouldBe` True
+    it "part 2 containsLetterRepeat example 2.5" $ do
+      Five.containsLetterRepeat "aabcdefgaa" `shouldBe` False
+    -- xit "part 2 input" $ do -- wrong answer
+      -- input <- readFile "./inputs/5.txt"
+      -- putStrLn $ show (Data.List.map ( Five.containsPairCopied "") (lines input))
+      -- Five.part2 (lines input) `shouldBe` 45
+  
+  describe "Day 6" $ do
+    it "decodeInstruction" $ do
+      putStrLn $ show (Six.decodeInstruction "turn on 0,0 through 999,999")
+    it "part 1 example 1" $ do
+      Six.part1 ["turn on 0,0 through 999,999"] `shouldBe` 1000000
+    it "part 1 example 2" $ do
+      Six.part1 ["turn on 499,499 through 500,500"] `shouldBe` 4
     
