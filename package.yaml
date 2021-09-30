@@ -29,6 +29,7 @@ dependencies:
 - split
 - containers
 - MissingH
+- regex-posix
 
 library:
   source-dirs: src

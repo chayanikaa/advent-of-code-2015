@@ -8,6 +8,7 @@ import qualified Three
 import qualified Four
 import qualified Five
 import qualified Six
+import qualified Seven
 
 main :: IO ()
 main = hspec $ do
@@ -119,7 +120,16 @@ main = hspec $ do
       Six.part2 ["turn on 0,0 through 0,0"] `shouldBe` 1
     it "part 2 example 2" $ do
       Six.part2 ["toggle 0,0 through 999,999"] `shouldBe` 2000000
-    it "part 2 input" $ do
+    xit "part 2 input" $ do
       input <- readFile "./inputs/6.txt"
-      Six.part2 (lines input) `shouldBe` 377891
-    
+      Six.part2 (lines input) `shouldBe` 14110788
+  
+  describe "Day 7" $ do
+    it "readInstructions" $ do
+      input <- readFile "./inputs/7.txt"
+      putStrLn $ show $ Seven.readInstructions (lines input)
+    it "decodeInstruction" $ do
+      input <- readFile "./inputs/7.txt"
+      Seven.part1 (lines input) "a" `shouldBe` "456"
+    it "readInstructions" $ do
+      putStrLn $ show (Seven.processInstruction [] (Seven.Instruction "NOT 3" "x"))
