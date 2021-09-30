@@ -56,7 +56,7 @@ getWires instructions =
 -- run recursively till all instructions processed
 processInstructions :: [Instruction] -> [Wire] -> [Wire]
 processInstructions instructions wires =
-  let (solved, unsolved) = partition (\i -> notElem ' ' (getInput i)) instructions
+  let (solved, unsolved) = partition (\i -> ((getInput i) =~ "^[0-9]+$" :: Bool)) instructions
       newWires = wires ++ (getWires solved)
   in if (null unsolved)
      then newWires
@@ -74,12 +74,15 @@ parseInstruction :: String -> Expression
 parseInstruction str
   | str =~ "^NOT [a-z0-9]+$" :: Bool = Expression "NOT" ((words str)!!1) ""
   | str =~ "^[a-z0-9]+ [A-Z]+ [a-z0-9]+$" :: Bool = Expression ((words str)!!1) ((words str)!!0) ((words str)!!2)
+  | str =~ "^[a-z]+$" :: Bool = Expression "ID" str ""
   | otherwise = error $ "Invalid input to create an expression " ++ str
 
 solveExpression :: Expression -> String
 solveExpression expression
-  | ((getOperand1 expression) =~ "^[0-9]+$" :: Bool) && ((getOperand2 expression) =~ "^[0-9]*$" :: Bool) = calculate expression
+  | ((getOperand1 expression) =~ "^[0-9]+$" :: Bool) && ((getOperand2 expression) =~ "^[0-9]+$" :: Bool) = calculate expression
+  | (getOperator expression) == "NOT" && ((getOperand1 expression) =~ "^[0-9]+$" :: Bool) = calculate expression
   | (getOperator expression) == "NOT" = "NOT " ++ (getOperand1 expression)
+  | (getOperator expression) == "ID" = getOperand1 expression
   | otherwise = (getOperand1 expression) ++ " " ++ (getOperator expression) ++ " " ++ (getOperand2 expression)
 
 subValue :: [Wire] -> String -> String

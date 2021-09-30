@@ -125,11 +125,9 @@ main = hspec $ do
       Six.part2 (lines input) `shouldBe` 14110788
   
   describe "Day 7" $ do
-    it "readInstructions" $ do
+    it "part 1" $ do
       input <- readFile "./inputs/7.txt"
-      putStrLn $ show $ Seven.readInstructions (lines input)
-    it "decodeInstruction" $ do
-      input <- readFile "./inputs/7.txt"
-      Seven.part1 (lines input) "a" `shouldBe` "456"
-    it "readInstructions" $ do
-      putStrLn $ show (Seven.processInstruction [] (Seven.Instruction "NOT 3" "x"))
+      Seven.part1 (lines input) "a" `shouldBe` "3176"
+    it "part 2" $ do
+      input <- readFile "./inputs/7-2.txt"
+      Seven.part1 (lines input) "a" `shouldBe` "14710"
