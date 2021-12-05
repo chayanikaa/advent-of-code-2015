@@ -41,7 +41,7 @@ part1 str =
 
 generateSides (l,w,h) = [(l,w),(l,h),(w,h)] -- must be a better way to do this
 
-generatePerimeters sides = map (\(x, y) -> 2 * x + 2 * y) sides
+generatePerimeters = map (\(x, y) -> 2 * x + 2 * y)
 
 calculateVolume (l,w,h) = l*w*h
 

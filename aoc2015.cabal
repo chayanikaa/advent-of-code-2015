@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: b1dfae5ea521af860d853ef243e4b6446d2ef85c065b97ba2308272c992afbeb
+-- hash: d319bd035b262741a2361ad1d23f685f1306dac96c6342b5682d950d92af0040
 
 name:           aoc2015
 version:        0.1.0.0
@@ -27,6 +27,7 @@ source-repository head
 
 library
   exposed-modules:
+      Eight
       Five
       Four
       Lib
@@ -50,6 +51,7 @@ library
     , regex-posix
     , split
     , tasty >=1.2.3
+    , text
   default-language: Haskell2010
 
 executable aoc2015-exe

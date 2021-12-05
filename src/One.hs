@@ -8,8 +8,8 @@ processString1 :: String -> Int -> Int
 main :: IO ()
 main = do
       input <- readFile "../inputs/1.txt"
-      putStrLn (show (processString1 input 0))
-      putStrLn (show (processString2 input 0 0))
+      print (processString1 input 0)
+      print (processString2 input 0 0)
 
 processChar char currFloor
   | char == '(' = currFloor + 1
