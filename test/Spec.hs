@@ -141,3 +141,9 @@ main = hspec $ do
     it "part 1" $ do
       input <- readFile "./inputs/8.txt"
       Eight.part1 (lines input) `shouldBe` 1371
+    it "part 2: test example" $ do
+      input <- readFile "./inputs/8-ex.txt"
+      Eight.part2 (lines input) `shouldBe` 19
+    it "part 2" $ do
+      input <- readFile "./inputs/8.txt"
+      Eight.part2 (lines input) `shouldBe` 2117
