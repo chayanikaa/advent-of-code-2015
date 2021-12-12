@@ -37,7 +37,7 @@ parseSingleLine str =
 part1 str =
     let parsedInputs = parseInput str
         areas = map calculateArea parsedInputs
-    in foldl (+) 0 areas
+    in sum areas
 
 generateSides (l,w,h) = [(l,w),(l,h),(w,h)] -- must be a better way to do this
 
@@ -50,5 +50,5 @@ calculateRibbon (l,w,h) = calculateVolume (l,w,h) + (minimum . generatePerimeter
 part2 str =
     let parsedInputs = parseInput str
         lengths = map calculateRibbon parsedInputs
-    in foldl (+) 0 lengths
+    in sum lengths
 
