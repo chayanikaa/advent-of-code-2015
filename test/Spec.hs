@@ -10,7 +10,8 @@ import qualified Five
 import qualified Six
 import qualified Seven
 import qualified Eight
-
+import qualified Nine
+import qualified Nine
 
 main :: IO ()
 main = hspec $ do
@@ -147,3 +148,11 @@ main = hspec $ do
     it "part 2" $ do
       input <- readFile "./inputs/8.txt"
       Eight.part2 (lines input) `shouldBe` 2117
+  
+  describe "Day 9" $ do
+    it "part 1" $ do
+      input <- readFile "./inputs/9.txt"
+      Nine.part1 (lines input) `shouldBe` 117
+    it "part 2" $ do
+      input <- readFile "./inputs/9.txt"
+      Nine.part2 (lines input) `shouldBe` 909

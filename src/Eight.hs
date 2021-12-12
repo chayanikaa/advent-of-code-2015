@@ -1,6 +1,3 @@
-{-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE FlexibleContexts #-}
-
 module Eight
     (
         part1,
@@ -9,18 +6,17 @@ module Eight
     ) where
 
 decode :: String -> String
-decode ('\\':'\\':xs)    = ('\\':decode xs)
-decode ('\\':'"':xs)     = ('"':decode xs)
-decode ('\\':'x':x:y:xs) = ('!':decode xs)
-decode (x:xs)            = (x:decode xs)
+decode ('\\':'\\':xs)    = '\\':decode xs
+decode ('\\':'"':xs)     = '"':decode xs
+decode ('\\':'x':x:y:xs) = '!':decode xs
+decode (x:xs)            = x:decode xs
 decode []                = []
 
 encode :: String -> String
-encode ('\\':xs)    = ("\\\\" ++ encode xs)
-encode ('"':xs)     = ("\\\"" ++ encode xs)
-encode (x:xs)            = (x:encode xs)
-encode []                = []
-
+encode ('\\':xs)    = "\\\\" ++ encode xs
+encode ('"':xs)     = "\\\"" ++ encode xs
+encode (x:xs)       = x:encode xs
+encode []           = []
 
 calculateParsedLength :: String -> Int
 calculateParsedLength = length . decode . tail . init
