@@ -12,6 +12,7 @@ import qualified Seven
 import qualified Eight
 import qualified Nine
 import qualified Ten
+import qualified Eleven
 
 main :: IO ()
 main = hspec $ do
@@ -162,3 +163,13 @@ main = hspec $ do
       Ten.part1 "1113122113" `shouldBe` 360154
     it "part 2" $ do
       Ten.part2 "1113122113" `shouldBe` 5103798
+  
+  describe "Day 11" $ do
+    -- it "part 1: example 1" $ do
+    --   Eleven.part1 "abcdefgh" 0 `shouldBe` "abcdffaa"
+    -- it "part 1: example 2" $ do
+    --   Eleven.part1 "ghijklmn" 0 `shouldBe` "ghjaabcc"
+    it "part 1" $ do
+      Eleven.part1 "vzbxkghb" 0 `shouldBe` "vzbxxyzz"
+    it "part 2" $ do
+      Eleven.part1 "vzbxkghb" 1 `shouldBe` "vzcaabcc"

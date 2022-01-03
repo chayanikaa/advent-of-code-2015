@@ -51,4 +51,3 @@ part2 str =
     let parsedInputs = parseInput str
         lengths = map calculateRibbon parsedInputs
     in sum lengths
-

@@ -30,6 +30,8 @@ dependencies:
 - containers
 - MissingH
 - regex-posix
+- text
+- vector
 
 library:
   source-dirs: src

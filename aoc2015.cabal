@@ -27,6 +27,7 @@ source-repository head
 
 library
   exposed-modules:
+      Eleven
       Eight
       Five
       Four
@@ -54,6 +55,7 @@ library
     , split
     , tasty >=1.2.3
     , text
+    , vector
   default-language: Haskell2010
 
 executable aoc2015-exe
