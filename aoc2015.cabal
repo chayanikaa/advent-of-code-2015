@@ -39,6 +39,7 @@ library
       Ten
       Three
       Two
+      Thirteen
   other-modules:
       Paths_aoc2015
   hs-source-dirs:
