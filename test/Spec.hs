@@ -14,6 +14,7 @@ import qualified Nine
 import qualified Ten
 import qualified Eleven
 import qualified Thirteen
+import qualified Fourteen
 
 
 main :: IO ()
@@ -183,3 +184,11 @@ main = hspec $ do
     it "part 2" $ do
       input <- readFile "./inputs/13.txt"
       Thirteen.part2 (lines input) `shouldBe` 601
+  
+  describe "Day 14" $ do
+    it "part 1" $ do
+      input <- readFile "./inputs/14.txt"
+      Fourteen.part1 (lines input) `shouldBe` 2655
+    it "part 2" $ do
+      input <- readFile "./inputs/14.txt"
+      print $ Fourteen.part2 (lines input)
