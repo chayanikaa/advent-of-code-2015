@@ -37,4 +37,4 @@ part2 statements =
   in last points
 
 calculateDistances :: [(Int, Int, Int)] -> Int -> [Int]
-calculateDistances inputs sec = map (\input -> calculateDistance input sec) inputs
+calculateDistances inputs sec = map (`calculateDistance` sec) inputs
