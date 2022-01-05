@@ -17,6 +17,7 @@ import qualified Thirteen
 import qualified Fourteen
 import qualified Fifteen
 import qualified Seventeen
+import qualified Eighteen
 
 
 main :: IO ()
@@ -79,19 +80,19 @@ main = hspec $ do
       input <- readFile "./inputs/5.txt"
       Five.part1 (lines input) `shouldBe` 258
     it "part 2 containsPairCopied example 1" $
-      Five.containsPairCopied "" "aaa" `shouldBe` False
+      Five.containsPairCopied "aaa" `shouldBe` False
     it "part 2 containsPairCopied example 1.5" $
-      Five.containsPairCopied "" "aaaa" `shouldBe` True
+      Five.containsPairCopied "aaaa" `shouldBe` True
     it "part 2 containsPairCopied example xyxy" $
-      Five.containsPairCopied "" "xyxy" `shouldBe` True
+      Five.containsPairCopied "xyxy" `shouldBe` True
     it "part 2 containsPairCopied example 2" $
-      Five.containsPairCopied "" "xxyxx" `shouldBe` True
+      Five.containsPairCopied "xxyxx" `shouldBe` True
     it "part 2 containsPairCopied example 2.5" $
-      Five.containsPairCopied "" "aabcdefgaa" `shouldBe` True
+      Five.containsPairCopied "aabcdefgaa" `shouldBe` True
     it "part 2 containsPairCopied example 3" $
-      Five.containsPairCopied "" "ieodomkazucvgmuy" `shouldBe` False
+      Five.containsPairCopied "ieodomkazucvgmuy" `shouldBe` False
     it "part 2 containsPairCopied example 4" $
-      Five.containsPairCopied "" "aabcdefgaa" `shouldBe` True
+      Five.containsPairCopied "aabcdefgaa" `shouldBe` True
     it "part 2 example 1" $
       Five.part2 ["qjhvhtzxzqqjkmpb"] `shouldBe` 1
     it "part 2 example 2" $
@@ -108,10 +109,9 @@ main = hspec $ do
       Five.containsLetterRepeat "xyxy" `shouldBe` True
     it "part 2 containsLetterRepeat example 2.5" $
       Five.containsLetterRepeat "aabcdefgaa" `shouldBe` False
-    -- xit "part 2 input" $ do -- wrong answer
-      -- input <- readFile "./inputs/5.txt"
-      -- putStrLn $ show (Data.List.map ( Five.containsPairCopied "") (lines input))
-      -- Five.part2 (lines input) `shouldBe` 45
+    it "part 2 input" $ do
+      input <- readFile "./inputs/5.txt"
+      Five.part2 (lines input) `shouldBe` 53
 
   describe "Day 6" $ do
     it "decodeInstruction" $
@@ -216,3 +216,11 @@ main = hspec $ do
     it "part 2" $ do
       input <- readFile "./inputs/17.txt"
       Seventeen.part2 (lines input) `shouldBe` 4
+  
+  describe "Day 18" $ do
+    it "part 1" $ do
+      input <- readFile "./inputs/18.txt"
+      Eighteen.part1 (lines input) `shouldBe` 1061
+    it "part 1" $ do
+      input <- readFile "./inputs/18-2.txt"
+      Eighteen.part2 (lines input) `shouldBe` 1061
